@@ -1,0 +1,72 @@
+<div class="jumbotron">
+  <div class="container" id="header">
+        <h1>Welcome to the Winner's Circle!</h1>
+  </div>
+</div>
+
+<div class="container">
+    <h3>Enter the name of your horse below. After adding all of your horses, promote your select few to the Winner's Circle.</h3>
+    <div class="row naming">
+        <h2>Name Your Horse</h2>
+        <form class="create-form">
+            <div class="form-group">
+                <label for="horse">Horse Name:</label>
+                <input type="text" id="horse" name="name">
+            </div>
+            {{!-- <div class="form-group">
+                <label for="racing">Ready to race?</label><br>
+                <input type="radio" name="racing" value="1" checked>Yes! Send to Winners' Circle.<br>
+                <input type="radio" name="racing" value="0">No. Send to Staging Area.
+            </div> --}}
+            <button type="submit">Add Horse</button>
+        </form>
+    </div>
+    <div class="row display">
+        <div class="staging col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Staging Area:</h2>
+                </div>
+                <div class="panel-body">
+                    {{#each horses}}
+                        {{#unless racing}}
+                          <p>{{this.horseName}}
+                          <button class="switch" data-id={{this.id}} data-racing={{this.racing}}>
+                              Race This Horse
+                          </button>
+                          </p>
+                        {{/unless}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="winner col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Winners' Circle:</h2>
+                </div>
+                <div class="panel-body">
+                    {{#each horses}}
+                        {{#if racing}}
+                          <p>{{this.horseName}}
+                          <button class="switch" data-id={{this.id}} data-racing={{this.racing}}>
+                              Back to Staging
+                          </button>
+                          </p>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row footer"></div>
+</div>
+
+
+
+
+
+
+
+
